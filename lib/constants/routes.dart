@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parctice2_app/screens/home_screen.dart';
-import 'package:parctice2_app/screens/recyle_screen.dart';
+import 'package:parctice2_app/screens/welcome_screen.dart';
 
 class Routes {
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -8,8 +8,8 @@ class Routes {
       case HomeScreen.routeName:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
 
-      case RecyleScreen.routeName:
-        return MaterialPageRoute(builder: (context) => const RecyleScreen());
+      case WelcomeScreen.routeName:
+        return MaterialPageRoute(builder: (context) => const WelcomeScreen());
 
       // case HomeScreen.routeName:
       //   return MaterialPageRoute(
