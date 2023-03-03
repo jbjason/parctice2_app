@@ -13,24 +13,27 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Load Data'),
-            ),
-            Expanded(
-              child: BlocBuilder<TaskCubit, TaskState>(
-                builder: (context, state) {
-                  if (state is TaskLoadingState) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is TaskErrorState) {
-                    return const Center(child: Text('Error Occured'));
-                  } else if (state is TaskLoadedState) {
-                    return _listView(state.allTasks);
-                  } else {
-                    return Container(height: 80, width: 80, color: Colors.red);
-                  }
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  BlocProvider.of<TaskCubit>(context).getTask();
                 },
+                child: const Text('Load Data'),
               ),
+            ),
+            BlocBuilder<TaskCubit, TaskState>(
+              builder: (context, state) {
+                if (state is TaskLoadingState) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is TaskErrorState) {
+                  return const Center(child: Text('Error Occured'));
+                } else if (state is TaskLoadedState) {
+                  return _listView(state.allTasks, context);
+                } else {
+                  return Container(
+                      margin: const EdgeInsets.all(20), color: Colors.grey);
+                }
+              },
             ),
           ],
         ),
@@ -38,22 +41,21 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _listView(List<Task> allTasks) {
+  Widget _listView(List<Task> allTasks, BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: allTasks.length,
       itemBuilder: (context, i) {
         return Container(
-          height: 80,
-          margin: const EdgeInsets.only(bottom: 10),
+          color: Colors.deepPurple[100],
+          width: MediaQuery.of(context).size.width,
+          margin: const EdgeInsets.only(bottom: 10, left: 20, right: 10),
           padding: const EdgeInsets.all(10),
           child: Row(
             children: [
               Text(allTasks[i].id),
-              const SizedBox(),
-              Text(allTasks[i].id, overflow: TextOverflow.fade),
               const SizedBox(width: 10),
-              Text(allTasks[i].id),
+              const Text('jb'),
             ],
           ),
         );
