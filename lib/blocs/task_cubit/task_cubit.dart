@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -12,24 +11,20 @@ class TaskCubit extends Cubit<TaskState> {
   TaskCubit() : super(TaskInitialState());
 
   void getTask() async {
-    print('[startinh]');
     emit(TaskLoadingState());
     final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
     try {
       final response = await http.get(url);
       if (response.statusCode == 200) {
         List<dynamic> list = json.decode(response.body);
-        print('[error 1]');
         final decodedList = list.map((e) => Task.fromMap(e)).toList();
         taskList = [...decodedList];
         emit(TaskLoadedState(allTasks: taskList));
-        print('[successful]');
       } else {
         emit(TaskErrorState());
       }
     } catch (e) {
       emit(TaskErrorState());
-      print('[Error]');
     }
   }
 }
