@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parctice2_app/screens/home_screen.dart';
+import 'package:parctice2_app/screens/soow_home.dart';
 
 class Routes {
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -7,8 +8,8 @@ class Routes {
       case HomeScreen.routeName:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
 
-      // case WelcomeScreen.routeName:
-      //   return MaterialPageRoute(builder: (context) => const WelcomeScreen());
+      case SooHome.routeName:
+        return MaterialPageRoute(builder: (context) => const SooHome());
 
       // case HomeScreen.routeName:
       //   return MaterialPageRoute(
