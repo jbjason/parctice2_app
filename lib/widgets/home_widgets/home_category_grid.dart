@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parctice2_app/screens/soow_home.dart';
+import 'package:parctice2_app/widgets/home_const.dart';
 
 class HomeCategoryGrid extends StatelessWidget {
   const HomeCategoryGrid({super.key});
@@ -24,9 +24,8 @@ class HomeCategoryGrid extends StatelessWidget {
                 width: 50,
                 padding: const EdgeInsets.all(7),
                 decoration: BoxDecoration(
-                  color: Colors.white54,
-                  border: Border.all(color: Colors.grey, width: .35),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(14),
+                  gradient: bodyGradient,
                 ),
                 child: Image.asset(categories[i].img, fit: BoxFit.contain),
               ),

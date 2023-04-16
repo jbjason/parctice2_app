@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parctice2_app/screens/soow_home.dart';
+import 'package:parctice2_app/widgets/home_const.dart';
 
 class HomeAppbar extends StatelessWidget {
   const HomeAppbar({super.key});
@@ -9,8 +9,12 @@ class HomeAppbar extends StatelessWidget {
     return SliverAppBar(
       backgroundColor: Colors.transparent,
       elevation: 10,
-      title: Image.asset('assets/welcome_logo.png',
-          height: 60, width: size.width * .4, fit: BoxFit.contain),
+      title: Image.asset(
+        'assets/welcome_logo.png',
+        height: 60,
+        width: size.width * .4,
+        fit: BoxFit.contain,
+      ),
       actions: [
         IconButton(
           onPressed: () {},
@@ -26,7 +30,7 @@ class HomeAppbar extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: 17),
       ],
     );
   }
