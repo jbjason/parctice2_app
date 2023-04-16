@@ -1,17 +1,15 @@
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:parctice2_app/widgets/home_widgets/home_appbar.dart';
+import 'package:parctice2_app/widgets/home_widgets/home_category_grid.dart';
+import 'package:parctice2_app/widgets/home_widgets/home_search_field.dart';
 
 const homeAppBar = Color(0xFF01204E);
 const homeAppBar1 = Color.fromARGB(255, 38, 75, 131);
 final homeGradient = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
-  colors: [
-    homeAppBar,
-    homeAppBar1.withOpacity(.5),
-    homeAppBar1.withOpacity(.05)
-  ],
+  colors: [homeAppBar, homeAppBar.withOpacity(.8), homeAppBar.withOpacity(.2)],
 );
 const homeTextColor = Colors.black54;
 const homeTextStyle = TextStyle(
@@ -29,14 +27,14 @@ class Category {
 }
 
 const categories = [
-  Category(img: 'assets/cardiology.png', title: 'Cardiology'),
-  Category(img: 'assets/dentist.png', title: 'Dentist'),
-  Category(img: 'assets/dermathology.png', title: 'Dermathology'),
-  Category(img: 'assets/neurology.png', title: 'Neurology'),
-  Category(img: 'assets/nutrition.png', title: 'Nutrition'),
-  Category(img: 'assets/psychology.png', title: 'Psychology'),
-  Category(img: 'assets/pulmonary.png', title: 'Pulmonary'),
-  Category(img: 'assets/urology.png', title: 'Urology'),
+  Category(img: 'assets/category/cardiology.png', title: 'Cardiology'),
+  Category(img: 'assets/category/dentist.png', title: 'Dentist'),
+  Category(img: 'assets/category/dermathology.png', title: 'Dermathology'),
+  Category(img: 'assets/category/neurology.png', title: 'Neurology'),
+  Category(img: 'assets/category/nutrition.png', title: 'Nutrition'),
+  Category(img: 'assets/category/psychology.png', title: 'Psychology'),
+  Category(img: 'assets/category/pulmonary.png', title: 'Pulmonary'),
+  Category(img: 'assets/category/urology.png', title: 'Urology'),
 ];
 
 class SooHome extends StatefulWidget {
@@ -50,46 +48,20 @@ class SooHome extends StatefulWidget {
 class _SooHomeState extends State<SooHome> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[100],
       body: CustomScrollView(
         slivers: [
-          const SHAppbar(),
+          const HomeAppbar(),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 17),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 15),
                   // search textField
-                  Container(
-                    height: 53,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 20),
-                        const Text('Search doctor', style: homeTextStyle),
-                        const Spacer(),
-                        Container(
-                          margin: const EdgeInsets.all(4.5),
-                          width: 50,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            gradient: homeGradient,
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          child: const Icon(
-                            CupertinoIcons.search,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  const HomeSearchField(),
                   const SizedBox(height: 35),
                   // upcoming-schedule text
                   Row(
@@ -108,7 +80,7 @@ class _SooHomeState extends State<SooHome> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 20),
                   // offer box
                   Container(
                     height: 155,
@@ -118,8 +90,9 @@ class _SooHomeState extends State<SooHome> {
                     ),
                   ),
                   const SizedBox(height: 35),
+                  // categories text
                   const Text(
-                    'Categories',
+                    'Our Service',
                     style: TextStyle(
                       color: homeTextColor,
                       fontWeight: FontWeight.bold,
@@ -130,39 +103,9 @@ class _SooHomeState extends State<SooHome> {
               ),
             ),
           ),
+          const HomeCategoryGrid(),
         ],
       ),
-    );
-  }
-}
-
-class SHAppbar extends StatelessWidget {
-  const SHAppbar({super.key});
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return SliverAppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 10,
-      title: Image.asset('assets/welcome_logo.png',
-          height: 60, width: size.width * .4, fit: BoxFit.contain),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.notifications_outlined, color: homeAppBar),
-        ),
-        Container(
-          width: 30,
-          height: 30,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage('assets/people_logo.jpg'),
-            ),
-          ),
-        ),
-        const SizedBox(width: 10),
-      ],
     );
   }
 }
