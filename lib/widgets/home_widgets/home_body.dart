@@ -22,7 +22,7 @@ class HomeBody extends StatelessWidget {
             const HomeBOfferContainer(),
             const SizedBox(height: 20),
             // categories text
-            titleSeeAllText('OUR SERVICE', () {}),
+            getTitleSeeAllText('OUR SERVICE', () {}),
           ],
         ),
       ),

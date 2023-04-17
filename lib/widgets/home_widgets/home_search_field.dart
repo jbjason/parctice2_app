@@ -32,8 +32,13 @@ class HomeSearchField extends StatelessWidget {
             width: 50,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              gradient: homeGradient,
-              borderRadius: BorderRadius.circular(8),
+              gradient: getHomeGradient(homeAppBar),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(8),
+                topRight: Radius.circular(50),
+                bottomRight: Radius.circular(8),
+                bottomLeft: Radius.circular(8),
+              ),
             ),
             child: const Icon(
               CupertinoIcons.search,

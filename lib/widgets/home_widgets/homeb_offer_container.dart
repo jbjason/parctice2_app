@@ -10,7 +10,8 @@ class HomeBOfferContainer extends StatelessWidget {
       height: 170,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        gradient: homeGradient,
+        // B2EBF2 80DDEA 4DD0E1
+        gradient: getHomeGradient(const Color(0xFF80DDEA)),
         boxShadow: homeShadow,
         borderRadius: BorderRadius.circular(21),
       ),
@@ -38,33 +39,11 @@ class HomeBOfferContainer extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Dr. Al Jubayer',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xB3FFFFFF),
-                        ),
-                      ),
-                      const Text(
-                        'Medicine & Hear Specialist',
-                        style: TextStyle(fontSize: 9, color: Color(0xB3FFFFFF)),
-                      ),
+                      getTitleText('Dr. Al Jubayer', Colors.white),
+                      getSubTitleText('Medicine & Hear Specialist',
+                          const Color(0xB3FFFFFF)),
                       const SizedBox(height: 10),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 7, vertical: 2.5),
-                        decoration: const BoxDecoration(
-                          color: homeAppBar,
-                          borderRadius: BorderRadius.horizontal(
-                            left: Radius.circular(4),
-                            right: Radius.circular(14),
-                          ),
-                        ),
-                        child: const Text(
-                          'Good Health Clinic',
-                          style: TextStyle(fontSize: 10, color: Colors.white),
-                        ),
-                      ),
+                      getDoctorCategory('Good Health Clinic'),
                     ],
                   ),
                 ],

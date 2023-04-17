@@ -11,20 +11,46 @@ class SooHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: clock1,
-      body: CustomScrollView(
-        slivers: [
-          const HomeAppbar(),
-          const HomeBody(),
-          const HomeCategoryGrid(),
-          SliverToBoxAdapter(
-            child: Padding(
+        backgroundColor: ashhLight,
+        body: CustomScrollView(
+          slivers: [
+            const HomeAppbar(),
+            const HomeBody(),
+            const HomeCategoryGrid(),
+            SliverToBoxAdapter(
+              child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
-                child: titleSeeAllText('TOP DOCTOR', () {})),
+                child: getTitleSeeAllText('TOP DOCTOR', () {}),
+              ),
+            ),
+            const HomeDoctorList(),
+          ],
+        ),
+        bottomNavigationBar: Container(
+          height: kToolbarHeight,
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.home_outlined, color: homeSecondary)),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.medical_information_outlined,
+                      color: homeSecondary)),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.schedule_send_outlined,
+                      color: homeSecondary)),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.share, color: homeSecondary)),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.people_outline, color: homeSecondary)),
+            ],
           ),
-          const HomeDoctorList(),
-        ],
-      ),
-    );
+        ));
   }
 }

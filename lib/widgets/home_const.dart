@@ -1,22 +1,24 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-const ashDark = Color(0xFFC4C8E5);
-const ashhLight = Color(0xFFD7D9EE);
-const buttonColor = Color(0xFFE7E9F6);
-const dFloatColor = Color(0xFF8F90F3);
+// const ashDark = Color(0xFFC4C8E5);
+// const ashhLight = Color(0xFFD7D9EE);
+// const buttonColor = Color(0xFFE7E9F6);
+// const dFloatColor = Color(0xFF8F90F3);
+// const clock2 = Color(0xFFCADBEB);
 const homeAppBar = Color(0xFF01204E);
-const clock1 = Color(0xFFECF6FF);
-const clock2 = Color(0xFFCADBEB);
-final homeGradient = LinearGradient(
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-  colors: [
-    homeAppBar.withOpacity(.9),
-    homeAppBar.withOpacity(.6),
-    homeAppBar.withOpacity(.4)
-  ],
-);
+const homeSecondary = Color.fromARGB(255, 94, 111, 136);
+const ashhLight = Color(0xFFECF6FF);
+
+Gradient getHomeGradient(Color color) => LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        color.withOpacity(.9),
+        color.withOpacity(.6),
+        color.withOpacity(.4)
+      ],
+    );
 final homeShadow = [
   BoxShadow(
     color: const Color(0xFF3F6080).withOpacity(.4),
@@ -141,7 +143,7 @@ const doctors = [
   ),
 ];
 
-Widget titleSeeAllText(String title, Function onTap) => Row(
+Widget getTitleSeeAllText(String title, Function onTap) => Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
@@ -164,4 +166,31 @@ Widget titleSeeAllText(String title, Function onTap) => Row(
           ),
         ),
       ],
+    );
+
+Widget getDoctorCategory(String title) => Container(
+      padding: const EdgeInsets.only(left: 7, top: 2.5, bottom: 2.5, right: 14),
+      decoration: const BoxDecoration(
+        color: homeAppBar,
+        borderRadius: BorderRadius.horizontal(
+          left: Radius.circular(4),
+          right: Radius.circular(14),
+        ),
+      ),
+      child: Text(
+        title,
+        style: const TextStyle(fontSize: 10, color: Colors.white),
+      ),
+    );
+
+Widget getTitleText(String title, Color color) => Text(
+      title,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(fontWeight: FontWeight.bold, color: color),
+    );
+
+Widget getSubTitleText(String title, Color color) => Text(
+      title,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(fontSize: 9.5, color: color),
     );
