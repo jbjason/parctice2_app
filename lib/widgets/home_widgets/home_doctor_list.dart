@@ -34,19 +34,8 @@ class HomeDoctorList extends StatelessWidget {
                       ),
                       // subtitle
                       _subtitle(doctors[i].subtitle),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            '★★★☆☆  25 Reviews',
-                            style: TextStyle(color: Colors.cyan, fontSize: 9),
-                          ),
-                          Text(
-                            '\$ ${doctors[i].fees}',
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
+                      // reviews & fees
+                      _reviewsAndFees(doctors[i].review, doctors[i].fees),
                       const Divider(color: Color(0xFFBDBDBD)),
                       // location
                       _locationScheduleText(
@@ -90,5 +79,26 @@ class HomeDoctorList extends StatelessWidget {
           title,
           style: const TextStyle(fontSize: 10, color: Colors.white),
         ),
+      );
+
+  Widget _reviewsAndFees(int review, double fees) => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          RichText(
+            text: TextSpan(
+              text: '★★★☆☆',
+              style: const TextStyle(color: Colors.cyan, fontSize: 10),
+              children: [
+                TextSpan(
+                    text: ' $review Reviews',
+                    style: const TextStyle(color: Colors.cyan, fontSize: 8)),
+              ],
+            ),
+          ),
+          Text(
+            '\$ $fees',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
       );
 }
