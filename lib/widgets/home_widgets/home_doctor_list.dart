@@ -14,6 +14,7 @@ class HomeDoctorList extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
             gradient: bodyGradient,
+            boxShadow: bodyShadow,
           ),
           child: Row(
             children: [
@@ -29,30 +30,36 @@ class HomeDoctorList extends StatelessWidget {
                       Text(
                         doctors[i].title,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: homeAppBar,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(color: homeAppBar, fontSize: 16),
                       ),
                       // subtitle
                       Text(
                         doctors[i].subtitle,
-                        style:
-                            const TextStyle(fontSize: 11, color: Colors.grey),
+                        style: const TextStyle(fontSize: 10),
                       ),
-                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            '★★★☆☆  25 Reviews',
+                            style: TextStyle(color: Colors.cyan, fontSize: 9.5),
+                          ),
+                          Text(
+                            '\$ ${doctors[i].fees}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      const Divider(color: Colors.grey),
                       // location
                       Row(
                         children: [
-                          const Icon(Icons.location_on_outlined, size: 11),
+                          const Icon(Icons.home_outlined, size: 11),
                           const SizedBox(width: 2),
                           Text(
                             doctors[i].location,
                             style: const TextStyle(
-                              fontSize: 11,
-                              color: Colors.grey,
-                            ),
+                                fontSize: 11, color: homeTextColor),
                           ),
                         ],
                       ),
@@ -65,13 +72,11 @@ class HomeDoctorList extends StatelessWidget {
                             doctors[i].schedule,
                             style: const TextStyle(
                               fontSize: 11,
-                              color: Colors.grey,
+                              color: homeTextColor,
                             ),
                           ),
                         ],
                       ),
-                      // fees
-                      Text(' \$ ${doctors[i].fees}'),
                     ],
                   ),
                 ),

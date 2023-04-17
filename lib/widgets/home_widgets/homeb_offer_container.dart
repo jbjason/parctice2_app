@@ -11,6 +11,7 @@ class HomeBOfferContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         gradient: homeGradient,
+        boxShadow: homeShadow,
         borderRadius: BorderRadius.circular(21),
       ),
       child: Stack(
@@ -26,8 +27,8 @@ class HomeBOfferContainer extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 3,
-                    height: 55,
+                    width: 2.6,
+                    height: 60,
                     decoration: BoxDecoration(
                       color: const Color(0xFFFF3D00),
                       borderRadius: BorderRadius.circular(10),
@@ -40,20 +41,25 @@ class HomeBOfferContainer extends StatelessWidget {
                       const Text(
                         'Dr. Al Jubayer',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xB3FFFFFF),
+                        ),
                       ),
                       const Text(
                         'Medicine & Hear Specialist',
-                        style: TextStyle(fontSize: 9, color: Colors.white),
+                        style: TextStyle(fontSize: 9, color: Color(0xB3FFFFFF)),
                       ),
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 10),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 7, vertical: 2.5),
+                          horizontal: 7,
+                          vertical: 2.5,
+                        ),
                         color: homeAppBar,
                         child: const Text(
                           'Good Health Clinic',
-                          style: TextStyle(fontSize: 10, color: Colors.white),
+                          style:
+                              TextStyle(fontSize: 10, color: Color(0xB3FFFFFF)),
                         ),
                       ),
                     ],
@@ -80,7 +86,7 @@ class HomeBOfferContainer extends StatelessWidget {
   Widget _offerText(String title) => Text(
         title,
         style: const TextStyle(
-          fontSize: 18,
+          fontSize: 17,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),

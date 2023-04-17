@@ -6,6 +6,8 @@ const ashhLight = Color(0xFFD7D9EE);
 const buttonColor = Color(0xFFE7E9F6);
 const dFloatColor = Color(0xFF8F90F3);
 const homeAppBar = Color(0xFF01204E);
+const clock1 = Color(0xFFECF6FF);
+const clock2 = Color(0xFFCADBEB);
 final homeGradient = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
@@ -15,6 +17,18 @@ final homeGradient = LinearGradient(
     homeAppBar.withOpacity(.4)
   ],
 );
+final homeShadow = [
+  BoxShadow(
+    color: const Color(0xFF3F6080).withOpacity(.4),
+    blurRadius: 32,
+    offset: const Offset(10, 5),
+  ),
+  const BoxShadow(
+    color: Color(0xFFFFFFFF),
+    blurRadius: 32,
+    offset: Offset(-10, -5),
+  ),
+];
 const homeTextColor = Color(0xFF292F51);
 Color randomColor() => Color(0xFFFFFFFF & Random().nextInt(0xFFFFFFFF));
 
@@ -23,10 +37,24 @@ const bodyGradient = LinearGradient(
   end: Alignment.bottomRight,
   colors: [
     Colors.white,
+    Colors.white,
     Color(0xB3FFFFFF),
     Color(0x62FFFFFF),
   ],
 );
+
+final bodyShadow = [
+  BoxShadow(
+    color: const Color(0xFF3F6080).withOpacity(.4),
+    blurRadius: 32,
+    offset: const Offset(10, 5),
+  ),
+  BoxShadow(
+    color: const Color(0xFFFFFFFF).withOpacity(1),
+    blurRadius: 32,
+    offset: const Offset(-10, -5),
+  ),
+];
 
 class Category {
   final String title;
@@ -76,7 +104,7 @@ const doctors = [
     review: 3,
   ),
   Doctor(
-    title: 'Prof. Dr. Kevin Williams',
+    title: 'Prof. Dr. Saif Rahman',
     subtitle: 'Heart Sergon',
     img: 'assets/doctor/doc2.png',
     location: 'Mirpur-Dhaka',
@@ -85,7 +113,7 @@ const doctors = [
     review: 3,
   ),
   Doctor(
-    title: 'Prof. Dr. Kevin Williams',
+    title: 'Dr. Shariful Islam',
     subtitle: 'Heart Sergon',
     img: 'assets/doctor/doc3.png',
     location: 'Mirpur-Dhaka',
@@ -94,7 +122,7 @@ const doctors = [
     review: 3,
   ),
   Doctor(
-    title: 'Prof. Dr. Kevin Williams',
+    title: 'Prof. Dr. Jb Jason',
     subtitle: 'Heart Sergon',
     img: 'assets/doctor/doc4.png',
     location: 'Mirpur-Dhaka',
@@ -103,7 +131,7 @@ const doctors = [
     review: 3,
   ),
   Doctor(
-    title: 'Prof. Dr. Kevin Williams',
+    title: 'Dr. Tarikul Islam',
     subtitle: 'Heart Sergon',
     img: 'assets/doctor/doc5.png',
     location: 'Mirpur-Dhaka',
@@ -120,6 +148,7 @@ Widget titleSeeAllText(String title, Function onTap) => Row(
           title,
           style: const TextStyle(
             color: homeTextColor,
+            fontSize: 15,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -127,7 +156,11 @@ Widget titleSeeAllText(String title, Function onTap) => Row(
           onPressed: () => onTap,
           child: const Text(
             'See More',
-            style: TextStyle(color: homeAppBar, fontSize: 10),
+            style: TextStyle(
+              color: Colors.cyan,
+              fontWeight: FontWeight.w300,
+              fontSize: 10,
+            ),
           ),
         ),
       ],

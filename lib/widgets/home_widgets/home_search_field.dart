@@ -12,6 +12,7 @@ class HomeSearchField extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: bodyGradient,
         borderRadius: BorderRadius.circular(14),
+        boxShadow: bodyShadow,
       ),
       child: Row(
         children: [

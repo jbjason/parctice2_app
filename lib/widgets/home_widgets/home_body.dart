@@ -17,14 +17,12 @@ class HomeBody extends StatelessWidget {
             const SizedBox(height: 15),
             // search textField
             const HomeSearchField(),
-            const SizedBox(height: 15),
-            // upcoming-schedule text
-            titleSeeAllText('Upcoming Schedule', () {}),
+            const SizedBox(height: 20),
             // offer box
             const HomeBOfferContainer(),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
             // categories text
-            titleSeeAllText('Our Service', () {}),
+            titleSeeAllText('OUR SERVICE', () {}),
           ],
         ),
       ),

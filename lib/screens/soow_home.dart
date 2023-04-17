@@ -10,24 +10,19 @@ class SooHome extends StatelessWidget {
   const SooHome({super.key});
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: ashhLight,
+    return Scaffold(
+      backgroundColor: clock1,
       body: CustomScrollView(
         slivers: [
-          HomeAppbar(),
-          HomeBody(),
-          HomeCategoryGrid(),
+          const HomeAppbar(),
+          const HomeBody(),
+          const HomeCategoryGrid(),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Text(
-                'Top Doctor',
-                style: TextStyle(
-                    color: homeTextColor, fontWeight: FontWeight.bold),
-              ),
-            ),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
+                child: titleSeeAllText('TOP DOCTOR', () {})),
           ),
-          HomeDoctorList(),
+          const HomeDoctorList(),
         ],
       ),
     );

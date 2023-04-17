@@ -8,7 +8,7 @@ class HomeCategoryGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverGrid(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4, mainAxisExtent: 80),
+          crossAxisCount: 4, mainAxisExtent: 85),
       delegate: SliverChildBuilderDelegate((context, i) {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -20,12 +20,13 @@ class HomeCategoryGrid extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: 50,
-                width: 50,
+                height: 55,
+                width: 55,
                 padding: const EdgeInsets.all(7),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
                   gradient: bodyGradient,
+                  boxShadow: bodyShadow,
                 ),
                 child: Image.asset(categories[i].img, fit: BoxFit.contain),
               ),
