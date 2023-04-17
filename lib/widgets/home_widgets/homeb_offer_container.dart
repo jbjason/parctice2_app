@@ -27,7 +27,7 @@ class HomeBOfferContainer extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 2.6,
+                    width: 2.5,
                     height: 60,
                     decoration: BoxDecoration(
                       color: const Color(0xFFFF3D00),

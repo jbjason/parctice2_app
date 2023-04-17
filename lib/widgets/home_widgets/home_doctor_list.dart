@@ -33,22 +33,7 @@ class HomeDoctorList extends StatelessWidget {
                         style: const TextStyle(color: homeAppBar, fontSize: 16),
                       ),
                       // subtitle
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 2.5),
-                        decoration: const BoxDecoration(
-                          color: homeAppBar,
-                          borderRadius: BorderRadius.horizontal(
-                            left: Radius.circular(4),
-                            right: Radius.circular(14),
-                          ),
-                        ),
-                        child: Text(
-                          doctors[i].subtitle,
-                          style: const TextStyle(
-                              fontSize: 10, color: Colors.white),
-                        ),
-                      ),
+                      _subtitle(doctors[i].subtitle),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -64,31 +49,11 @@ class HomeDoctorList extends StatelessWidget {
                       ),
                       const Divider(color: Color(0xFFBDBDBD)),
                       // location
-                      Row(
-                        children: [
-                          const Icon(Icons.home_outlined, size: 11),
-                          const SizedBox(width: 2),
-                          Text(
-                            doctors[i].location,
-                            style: const TextStyle(
-                                fontSize: 11, color: homeTextColor),
-                          ),
-                        ],
-                      ),
+                      _locationScheduleText(
+                          Icons.location_on_outlined, doctors[i].location),
                       // schedule
-                      Row(
-                        children: [
-                          const Icon(Icons.schedule, size: 11),
-                          const SizedBox(width: 2),
-                          Text(
-                            doctors[i].schedule,
-                            style: const TextStyle(
-                              fontSize: 11,
-                              color: homeTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
+                      _locationScheduleText(
+                          Icons.schedule, doctors[i].schedule),
                     ],
                   ),
                 ),
@@ -100,4 +65,30 @@ class HomeDoctorList extends StatelessWidget {
       ),
     );
   }
+
+  Widget _locationScheduleText(IconData icon, String title) => Row(
+        children: [
+          Icon(icon, size: 11),
+          const SizedBox(width: 2),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 11, color: homeTextColor),
+          ),
+        ],
+      );
+
+  Widget _subtitle(String title) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2.5),
+        decoration: const BoxDecoration(
+          color: homeAppBar,
+          borderRadius: BorderRadius.horizontal(
+            left: Radius.circular(4),
+            right: Radius.circular(14),
+          ),
+        ),
+        child: Text(
+          title,
+          style: const TextStyle(fontSize: 10, color: Colors.white),
+        ),
+      );
 }
