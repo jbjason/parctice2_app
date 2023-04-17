@@ -33,16 +33,28 @@ class HomeDoctorList extends StatelessWidget {
                         style: const TextStyle(color: homeAppBar, fontSize: 16),
                       ),
                       // subtitle
-                      Text(
-                        doctors[i].subtitle,
-                        style: const TextStyle(fontSize: 10),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 2.5),
+                        decoration: const BoxDecoration(
+                          color: homeAppBar,
+                          borderRadius: BorderRadius.horizontal(
+                            left: Radius.circular(4),
+                            right: Radius.circular(14),
+                          ),
+                        ),
+                        child: Text(
+                          doctors[i].subtitle,
+                          style: const TextStyle(
+                              fontSize: 10, color: Colors.white),
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
                             '★★★☆☆  25 Reviews',
-                            style: TextStyle(color: Colors.cyan, fontSize: 9.5),
+                            style: TextStyle(color: Colors.cyan, fontSize: 9),
                           ),
                           Text(
                             '\$ ${doctors[i].fees}',
@@ -50,7 +62,7 @@ class HomeDoctorList extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Divider(color: Colors.grey),
+                      const Divider(color: Color(0xFFBDBDBD)),
                       // location
                       Row(
                         children: [

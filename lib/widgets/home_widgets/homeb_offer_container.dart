@@ -52,14 +52,17 @@ class HomeBOfferContainer extends StatelessWidget {
                       const SizedBox(height: 10),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 7,
-                          vertical: 2.5,
+                            horizontal: 7, vertical: 2.5),
+                        decoration: const BoxDecoration(
+                          color: homeAppBar,
+                          borderRadius: BorderRadius.horizontal(
+                            left: Radius.circular(4),
+                            right: Radius.circular(14),
+                          ),
                         ),
-                        color: homeAppBar,
                         child: const Text(
                           'Good Health Clinic',
-                          style:
-                              TextStyle(fontSize: 10, color: Color(0xB3FFFFFF)),
+                          style: TextStyle(fontSize: 10, color: Colors.white),
                         ),
                       ),
                     ],
