@@ -26,9 +26,7 @@ class HomeAppbar extends StatelessWidget {
           decoration: const BoxDecoration(
             color: Colors.cyan,
             shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage('assets/people_logo.jpg'),
-            ),
+            image: DecorationImage(image: AssetImage('assets/2.jpg')),
           ),
         ),
         const SizedBox(width: 17),

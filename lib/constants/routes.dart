@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parctice2_app/screens/home_screen.dart';
-import 'package:parctice2_app/screens/soow_description.dart';
+import 'package:parctice2_app/screens/doc_details_screen.dart';
 import 'package:parctice2_app/screens/soow_home.dart';
 
 class Routes {
@@ -12,8 +12,9 @@ class Routes {
       case SooHome.routeName:
         return MaterialPageRoute(builder: (context) => const SooHome());
 
-      case SoowDescription.routeName:
-        return MaterialPageRoute(builder: (context) => const SoowDescription());
+      case DocDetailsScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => const DocDetailsScreen());
 
       // case HomeScreen.routeName:
       //   return MaterialPageRoute(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parctice2_app/screens/soow_description.dart';
+import 'package:parctice2_app/screens/doc_details_screen.dart';
 import 'package:parctice2_app/widgets/home_const.dart';
 
 class HomeDoctorList extends StatelessWidget {
@@ -10,7 +10,7 @@ class HomeDoctorList extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, i) => InkWell(
-          onTap: () => Navigator.pushNamed(context, SoowDescription.routeName),
+          onTap: () => Navigator.pushNamed(context, DocDetailsScreen.routeName),
           child: Container(
             height: 125,
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
