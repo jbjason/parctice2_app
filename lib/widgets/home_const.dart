@@ -19,18 +19,7 @@ Gradient getHomeGradient(Color color) => LinearGradient(
         color.withOpacity(.4)
       ],
     );
-final homeShadow = [
-  BoxShadow(
-    color: const Color(0xFF3F6080).withOpacity(.4),
-    blurRadius: 32,
-    offset: const Offset(10, 5),
-  ),
-  const BoxShadow(
-    color: Color(0xFFFFFFFF),
-    blurRadius: 32,
-    offset: Offset(-10, -5),
-  ),
-];
+
 const homeTextColor = Color(0xFF292F51);
 Color randomColor() => Color(0xFFFFFFFF & Random().nextInt(0xFFFFFFFF));
 
@@ -71,6 +60,7 @@ class Doctor {
   final String location;
   final String schedule;
   final double fees;
+  final double ratings;
   final int review;
 
   const Doctor({
@@ -80,6 +70,7 @@ class Doctor {
     required this.location,
     required this.schedule,
     required this.fees,
+    this.ratings = 4.6,
     required this.review,
   });
 }
@@ -170,6 +161,7 @@ Widget getTitleSeeAllText(String title, Function onTap) => Row(
 
 Widget getDoctorCategory(String title) => Container(
       padding: const EdgeInsets.only(left: 7, top: 2.5, bottom: 2.5, right: 14),
+      margin: const EdgeInsets.only(bottom: 5),
       decoration: const BoxDecoration(
         color: homeAppBar,
         borderRadius: BorderRadius.horizontal(

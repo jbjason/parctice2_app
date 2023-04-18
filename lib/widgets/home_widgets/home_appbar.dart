@@ -7,8 +7,9 @@ class HomeAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SliverAppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: ashhLight,
       elevation: 10,
+      pinned: true,
       title: Image.asset(
         'assets/welcome_logo.png',
         height: 60,
@@ -21,8 +22,8 @@ class HomeAppbar extends StatelessWidget {
           icon: const Icon(Icons.notifications_outlined, color: homeAppBar),
         ),
         Container(
-          width: 32,
-          height: 32,
+          width: 37,
+          height: 37,
           decoration: const BoxDecoration(
             color: Colors.cyan,
             shape: BoxShape.circle,

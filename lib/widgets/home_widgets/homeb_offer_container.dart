@@ -12,7 +12,7 @@ class HomeBOfferContainer extends StatelessWidget {
       decoration: BoxDecoration(
         // B2EBF2 80DDEA 4DD0E1
         gradient: getHomeGradient(const Color(0xFF80DDEA)),
-        boxShadow: homeShadow,
+        boxShadow: bodyShadow,
         borderRadius: BorderRadius.circular(21),
       ),
       child: Stack(

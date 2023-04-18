@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:parctice2_app/widgets/home_const.dart';
 
-class DocInfoList extends StatelessWidget {
-  const DocInfoList({super.key, required this.selectedIndex});
+class DocDInfoCategory extends StatelessWidget {
+  const DocDInfoCategory({super.key, required this.selectedIndex});
   final ValueNotifier<int> selectedIndex;
 
   @override
@@ -24,6 +24,7 @@ class DocInfoList extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(11),
             color: Colors.white,
+            boxShadow: bodyShadow,
           ),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
