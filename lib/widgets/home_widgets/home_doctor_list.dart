@@ -18,6 +18,7 @@ class HomeDoctorList extends StatelessWidget {
               borderRadius: BorderRadius.circular(7),
               gradient: bodyGradient,
               boxShadow: bodyShadow,
+              border: Border.all(color: Colors.grey[300]!),
             ),
             child: Row(
               children: [

@@ -14,13 +14,28 @@ class DocDInfoItem1 extends StatelessWidget {
               2,
         ),
         const SizedBox(height: 20),
-        getTitleText('Education History', homeAppBar),
+        const Text(
+          'Education History',
+          style: TextStyle(
+            color: homeTextColor,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 15),
         _getEducationHistory('Diploma in Pharmacy   (2020-2023)'),
         _getEducationHistory('FCPS   (2018-2020)'),
         _getEducationHistory('MBBS   (2015-2018)'),
-        const SizedBox(height: 20),
-        getTitleText('Specializations', homeAppBar),
-        const SizedBox(height: 5),
+        const SizedBox(height: 14),
+        const Text(
+          'Specializations',
+          style: TextStyle(
+            color: homeTextColor,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 15),
         Wrap(
           children: [
             getDoctorCategory('Heart Sergery'),
@@ -39,7 +54,7 @@ class DocDInfoItem1 extends StatelessWidget {
   }
 
   Widget _getEducationHistory(String title) => Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
         child: Row(
           children: [
             Container(
