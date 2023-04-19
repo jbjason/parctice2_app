@@ -7,6 +7,7 @@ class DocDInfoItem4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width * .45;
     return Column(
       children: [
         Row(
@@ -29,14 +30,35 @@ class DocDInfoItem4 extends StatelessWidget {
             ),
             const SizedBox(width: 20),
             Container(
-              width: 1.5,
+              width: .7,
               height: 100,
-              color: Colors.grey[400],
+              color: Colors.grey[350],
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [for (int i = 5; i > 0; i--) Text(getStar(i))],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  5,
+                  (index) {
+                    return Container(
+                      height: 4,
+                      width: width,
+                      alignment: Alignment.centerLeft,
+                      margin: const EdgeInsets.symmetric(vertical: 9),
+                      color: Colors.grey[350],
+                      child: Container(
+                        width: width / (index + 1),
+                        color: Colors.cyan,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],
