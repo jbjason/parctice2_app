@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:parctice2_app/widgets/home_const.dart';
 
 class DocDInfoCategory extends StatelessWidget {
-  const DocDInfoCategory({super.key, required this.selectedIndex});
-  final ValueNotifier<int> selectedIndex;
+  const DocDInfoCategory({super.key, required this.selectedCategory});
+  final ValueNotifier<int> selectedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class DocDInfoCategory extends StatelessWidget {
       'Reveiws'
     ];
     return ValueListenableBuilder(
-      valueListenable: selectedIndex,
+      valueListenable: selectedCategory,
       builder: (context, selected, __) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -32,7 +32,7 @@ class DocDInfoCategory extends StatelessWidget {
               children: List.generate(
                 aboutList.length,
                 (i) => InkWell(
-                  onTap: () => selectedIndex.value = i,
+                  onTap: () => selectedCategory.value = i,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parctice2_app/widgets/doc_details/docd_info_item1.dart';
 import 'package:parctice2_app/widgets/doc_details/docd_info_category.dart';
 import 'package:parctice2_app/widgets/doc_details/docd_appbar.dart';
+import 'package:parctice2_app/widgets/doc_details/docd_info_item2.dart';
 import 'package:parctice2_app/widgets/doc_details/docd_info_item4.dart';
 import 'package:parctice2_app/widgets/doc_details/docd_top_container.dart';
 import 'package:parctice2_app/widgets/home_const.dart';
@@ -13,11 +14,13 @@ class DocDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final doctor = doctors[0];
-    final selectedIndex = ValueNotifier<int>(0);
+    final selectedCategory = ValueNotifier<int>(0);
+    final selectedDate = ValueNotifier<DateTime>(DateTime.now());
+    final selectedSlot = ValueNotifier<int>(0);
     final infoItems = [
       const DocDInfoItem1(),
       const Text('Clinic & Fees'),
-      const Text('Schedule'),
+      DocDInfoItem2(selectedDate: selectedDate, selectedSlot: selectedSlot),
       DocDInfoItem4(doctor: doctor),
     ];
 
@@ -31,11 +34,11 @@ class DocDetailsScreen extends StatelessWidget {
           DocDTopContainer(doctor: doctor),
           // doc-infoList-category
           SliverToBoxAdapter(
-              child: DocDInfoCategory(selectedIndex: selectedIndex)),
+              child: DocDInfoCategory(selectedCategory: selectedCategory)),
           // doc-infoList-body
           SliverToBoxAdapter(
             child: ValueListenableBuilder(
-              valueListenable: selectedIndex,
+              valueListenable: selectedCategory,
               builder: (context, index, _) => Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(25.0),
