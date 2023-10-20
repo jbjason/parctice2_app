@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,12 +6,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: const Color(0xFFECF6FF),
       body: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          // image: const DecorationImage(image: AssetImage('assets/3.jpg')),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -26,71 +24,15 @@ class HomeScreen extends StatelessWidget {
         child: CustomPaint(
           foregroundPainter: HomeTopPainter(),
           child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             height: 200,
-            width: 250,
-            decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+            width: double.infinity,
+            decoration: BoxDecoration(border: Border.all(color: Colors.white)),
           ),
         ),
       ),
     );
   }
-
-  Widget _widget() => ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: CustomPaint(
-          painter: MyPainter(),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              const Positioned(
-                top: -15,
-                left: -15,
-                height: 40,
-                width: 40,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.lightGreen,
-                        blurRadius: 60,
-                        offset: Offset(5, 5),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned.fill(
-                top: 3,
-                left: 3,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Stack(
-                    children: [
-                      BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                        child: Container(),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Colors.white.withOpacity(.2),
-                              Colors.white.withOpacity(.05),
-                              Colors.transparent
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
 }
 
 class HomeTopPainter extends CustomPainter {
@@ -109,24 +51,24 @@ class HomeTopPainter extends CustomPainter {
     path.close();
     canvas.drawPath(path, paint1);
 
-    const gradient1 = LinearGradient(
-      colors: [
-        Color(0xFFccff33),
-        Color.fromARGB(255, 226, 247, 164),
-        Colors.transparent,
-      ],
-    );
+    // const gradient1 = LinearGradient(
+    //   colors: [
+    //     Color(0xFFccff33),
+    //     Color.fromARGB(255, 226, 247, 164),
+    //     Colors.transparent,
+    //   ],
+    // );
 
-    final center = Offset(w / 2, 20);
-    final rect2 = Rect.fromCenter(center: center, height: 20, width: 50);
-    final paint2 = Paint()
-      ..color = Colors.transparent; //..shader = gradient1.createShader(rect2);
-    final path2 = Path();
-    path2.moveTo(w / 2, 30);
-    path2.addRect(rect2);
-    path2.close();
-    canvas.drawShadow(path2, const Color(0xFFccff33), 10.0, false);
-    canvas.drawPath(path2, paint2);
+    // final center = Offset(w / 2, 20);
+    // final rect2 = Rect.fromCenter(center: center, height: 20, width: 50);
+    // final paint2 = Paint()
+    //   ..color = Colors.transparent; //..shader = gradient1.createShader(rect2);
+    // final path2 = Path();
+    // path2.moveTo(w / 2, 30);
+    // path2.addRect(rect2);
+    // path2.close();
+    // canvas.drawShadow(path2, const Color(0xFFccff33), 10.0, false);
+    // canvas.drawPath(path2, paint2);
   }
 
   @override
