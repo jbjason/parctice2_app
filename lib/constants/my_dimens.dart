@@ -93,7 +93,7 @@ class MyDimens {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          gradient: getHomeGradient(MyColor.skySecondary),
+          color: MyColor.bluePrimary,
           boxShadow: bodyShadow,
         ),
         child: child,
