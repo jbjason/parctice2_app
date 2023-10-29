@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:parctice2_app/constants/constants.dart';
 import 'package:parctice2_app/constants/my_dimens.dart';
@@ -11,17 +12,84 @@ class TestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColor.ashhLight,
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 100),
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/3.jpg'), fit: BoxFit.cover),
+          ),
+          child: Column(children: [
+            const FrostedGlassBox(
+              width: double.infinity,
+              height: 100,
+              child: Center(child: Text('Hiii There!!')),
+            ),
             Expanded(
               child: ListView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 clipBehavior: Clip.none,
                 itemCount: 6,
                 itemBuilder: (context, i) => ProductItem(index: i),
               ),
+            ),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+class FrostedGlassBox extends StatelessWidget {
+  final double width, height;
+  final Widget child;
+
+  const FrostedGlassBox(
+      {Key? key,
+      required this.width,
+      required this.height,
+      required this.child})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.0),
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: Stack(
+          children: [
+            BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 7.0,
+                sigmaY: 7.0,
+              ),
+              child: SizedBox(
+                  width: width, height: height, child: const Text(" ")),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        blurRadius: 30,
+                        offset: const Offset(2, 2))
+                  ],
+                  borderRadius: BorderRadius.circular(20.0),
+                  border: Border.all(
+                      color: Colors.white.withOpacity(0.2), width: 1.0),
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Colors.white.withOpacity(0.5),
+                        Colors.white.withOpacity(0.1),
+                      ],
+                      stops: const [
+                        0.0,
+                        1.0,
+                      ])),
+              child: child,
             ),
           ],
         ),
@@ -38,9 +106,8 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 135,
-      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       padding: const EdgeInsets.only(bottom: 5),
-      decoration: const BoxDecoration(boxShadow: MyDimens.bodyShadow),
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -48,58 +115,91 @@ class ProductItem extends StatelessWidget {
           Positioned.fill(
             child: ClipPath(
               clipper: TestBodyClipper(),
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: MyDimens.bodyGradient,
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(7),
-                    boxShadow: MyDimens.bodyShadow),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 130),
-                    // title, subtitle, review, fees & location
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // title
-                            Text(
-                              "Abdullah Al Jubayer",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 5),
-                            // speciality
-                            // speciality list starts from 0 but in server starts form 1, so we are decreasing
-                            MyDimens().getDoctorCategory("General Physician"),
-                            const Divider(thickness: .5),
-                            // reviews & fees
-                            _reviewsAndFees(3, 112, 2500),
-                            const Spacer(),
-                            // location
-                            _locationScheduleText(
-                              Icons.location_on_outlined,
-                              "Mirpur Dhaka- 1216",
-                            ),
-                            const SizedBox(height: 10),
-                          ],
-                        ),
-                      ),
+              child: Stack(
+                children: [
+                  BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 7.0,
+                      sigmaY: 7.0,
                     ),
-                  ],
-                ),
+                    child: const SizedBox(
+                        width: double.infinity, height: 135, child: Text(" ")),
+                  ),
+                  _getGlassEffect(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 130),
+                        // title, subtitle, review, fees & location
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // title
+                                Text(
+                                  "Abdullah Al Jubayer",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(height: 5),
+                                // speciality
+                                // speciality list starts from 0 but in server starts form 1, so we are decreasing
+                                MyDimens()
+                                    .getDoctorCategory("General Physician"),
+                                const Divider(thickness: .5),
+                                // reviews & fees
+                                _reviewsAndFees(3, 112, 2500),
+                                const Spacer(),
+                                // location
+                                _locationScheduleText(
+                                  Icons.location_on_outlined,
+                                  "Mirpur Dhaka- 1216",
+                                ),
+                                const SizedBox(height: 10),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _getGlassEffect({required Widget child}) {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 30,
+            offset: const Offset(2, 2),
+          )
+        ],
+        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1.0),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.white.withOpacity(0.5),
+            Colors.white.withOpacity(0.1),
+          ],
+          stops: const [0.0, 1.0],
+        ),
+      ),
+      child: child,
     );
   }
 
@@ -115,7 +215,6 @@ class ProductItem extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.red,
               shape: BoxShape.circle,
-              boxShadow: MyDimens.bodyShadow,
               border: Border.all(color: Colors.white, width: 2),
               image: DecorationImage(
                 image: AssetImage("assets/doctor/doc${(i % 3) + 1}.png"),
@@ -237,57 +336,4 @@ class TestBodyClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper oldClipper) => false;
-}
-
-class HomePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    assert(size.height == size.width);
-    final w = size.width;
-    final center = Offset(w / 2, w / 2);
-    final rect1 = Rect.fromCenter(center: center, width: w, height: w);
-
-    ///
-    // first Grey circular progress
-    final paint1 = _getPaint(Colors.grey[200]!);
-    final path1 = Path();
-    path1.addArc(rect1, vector.radians(0), vector.radians(270));
-    canvas.drawPath(path1, paint1);
-
-    ///
-    // first pink circular progress
-    final paint2 = _getPaint(MyColor.skyPrimary);
-    final path2 = Path();
-    path2.addArc(rect1, vector.radians(285), vector.radians(60));
-    canvas.drawPath(path2, paint2);
-
-    ///
-    // white CirclePointer
-    final paint3 = Paint()..color = Colors.white;
-    final x3 = center.dx + w / 2 * math.cos(vector.radians(286));
-    final y3 = center.dy + w / 2 * math.sin(vector.radians(286));
-    final center3 = Offset(x3, y3);
-    canvas.drawCircle(center3, 9.4, paint3);
-
-    ///
-    // inner black circular-progress
-    final paint4 = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = .8
-      ..color = Colors.grey[850]!;
-    final rect4 =
-        Rect.fromCenter(center: center, width: w - 40, height: w - 40);
-    final path4 = Path();
-    path4.addArc(rect4, vector.radians(0), vector.radians(360));
-    canvas.drawPath(path4, paint4);
-  }
-
-  Paint _getPaint(Color color) => Paint()
-    ..strokeWidth = 22
-    ..color = color
-    ..strokeCap = StrokeCap.round
-    ..style = PaintingStyle.stroke;
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

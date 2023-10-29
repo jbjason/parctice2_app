@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parctice2_app/constants/constants.dart';
 import 'package:parctice2_app/constants/my_dimens.dart';
+import 'package:parctice2_app/screens/test_screen.dart';
 
 class PtDocDetailsScreen extends StatelessWidget {
   static const routeName = '/pt-doc-details-screen';
@@ -29,23 +30,14 @@ class PtDocDetailsScreen extends StatelessWidget {
                 title: TabBar(
                   tabs: [
                     Tab(
-                      child: Text(
-                        'Basic',
-                        style: TextStyle(color: MyColor.textColor),
-                      ),
-                    ),
+                        child: Text('OverView',
+                            style: TextStyle(color: MyColor.blueSecondary))),
                     Tab(
-                      child: Text(
-                        'UpComing',
-                        style: TextStyle(color: MyColor.textColor),
-                      ),
-                    ),
+                        child: Text('Schedule',
+                            style: TextStyle(color: MyColor.blueSecondary))),
                     Tab(
-                      child: Text(
-                        'Ratings',
-                        style: TextStyle(color: MyColor.textColor),
-                      ),
-                    ),
+                        child: Text('Reveiws',
+                            style: TextStyle(color: MyColor.blueSecondary))),
                   ],
                 ),
               ),
@@ -464,15 +456,18 @@ class PtDocNavBar extends StatelessWidget {
             'Fee:  \$${2000}',
             style: TextStyle(color: Colors.white),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 13),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: MyColor.skyPrimary,
-            ),
-            child: const Text(
-              'Appointment',
-              style: TextStyle(fontWeight: FontWeight.w700),
+          InkWell(
+            onTap: () => Navigator.pushNamed(context, TestScreen.routeName),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 13),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: MyColor.skyPrimary,
+              ),
+              child: const Text(
+                'Appointment',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
             ),
           )
         ],
