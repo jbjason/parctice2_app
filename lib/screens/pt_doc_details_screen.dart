@@ -12,12 +12,12 @@ class PtDocDetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyColor.ashhLight,
       body: DefaultTabController(
-        length: 5,
+        length: 3,
         child: NestedScrollView(
-          headerSliverBuilder: (context, value) {
+          headerSliverBuilder: (context, _) {
             return [
               // appBar
-              SliverAppBar(pinned: true, elevation: 10, title: _getTopAppbar),
+              _getTopAppbar,
               // doc-info
               const SliverToBoxAdapter(child: PtDocDetTopContainer()),
               // tab-bars
@@ -27,11 +27,10 @@ class PtDocDetailsScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 elevation: 10,
                 title: TabBar(
-                  isScrollable: true,
                   tabs: [
                     Tab(
                       child: Text(
-                        'Recent',
+                        'Basic',
                         style: TextStyle(color: MyColor.textColor),
                       ),
                     ),
@@ -43,19 +42,7 @@ class PtDocDetailsScreen extends StatelessWidget {
                     ),
                     Tab(
                       child: Text(
-                        'FollowUp',
-                        style: TextStyle(color: MyColor.textColor),
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        'FollowUp2',
-                        style: TextStyle(color: MyColor.textColor),
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        'FollowUp3',
+                        'Ratings',
                         style: TextStyle(color: MyColor.textColor),
                       ),
                     ),
@@ -69,8 +56,6 @@ class PtDocDetailsScreen extends StatelessWidget {
               const DocDInfoItem1(),
               DocDInfoItem2(selectedSlot: selectedSlot),
               const DocDInfoItem3(),
-              const Center(child: Text('FollowUp2')),
-              const Center(child: Text('FollowUp3')),
             ],
           ),
         ),
@@ -79,23 +64,28 @@ class PtDocDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget get _getTopAppbar {
-    return const Row(
-      children: [
-        SizedBox(
-          height: 8,
-          width: 8,
-          child: DecoratedBox(
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.green),
+  Widget get _getTopAppbar => const SliverAppBar(
+        backgroundColor: MyColor.bluePrimary,
+        pinned: true,
+        elevation: 10,
+        centerTitle: true,
+        title: Text('Dr. Info'),
+        actions: [
+          SizedBox(
+            height: 8,
+            width: 8,
+            child: DecoratedBox(
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.green),
+            ),
           ),
-        ),
-        SizedBox(width: 5),
-        Text('Active Now'),
-        SizedBox(width: 15),
-      ],
-    );
-  }
+          SizedBox(width: 5),
+          Center(
+            child: Text('Active Now', style: TextStyle(fontSize: 8)),
+          ),
+          SizedBox(width: 10),
+        ],
+      );
 }
 
 class PtDocDetTopContainer extends StatelessWidget {
@@ -104,53 +94,52 @@ class PtDocDetTopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
       child: Column(
         children: [
-          SizedBox(
-            height: 125,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // img
-                Container(
-                  width: 125,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 3.5),
-                    shape: BoxShape.circle,
-                    image: const DecorationImage(
-                      image: AssetImage('assets/doctor/doc1.png'),
-                      fit: BoxFit.contain,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // img
+              Container(
+                width: 125,
+                height: 125,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white, width: 3.5),
+                  shape: BoxShape.circle,
+                  image: const DecorationImage(
+                    image: AssetImage('assets/doctor/doc1.png'),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              // title, specialities, place
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Sanjida Alam",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(fontWeight: FontWeight.bold),
                     ),
-                  ),
+                    const SizedBox(height: 8),
+                    MyDimens().getDoctorCategory("Dentist"),
+                    const SizedBox(height: 10),
+                    _getSubtitleText('BIDM Hospital, Dhaka', context),
+                  ],
                 ),
-                const SizedBox(width: 16),
-                // title, specialities, place
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Sanjida Alam",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 8),
-                      MyDimens().getDoctorCategory("Dentist"),
-                      const SizedBox(height: 10),
-                      _getSubtitleText('BIDM Hospital, Dhaka', context),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
+          const Divider(color: Colors.black12),
           // Experience, reviews, Location
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -163,7 +152,7 @@ class PtDocDetTopContainer extends StatelessWidget {
                   const Text('5+ years'),
                 ],
               ),
-              Container(height: 35, width: .6, color: const Color(0xFFD6D6D6)),
+              Container(height: 35, width: .6, color: Colors.grey),
               Column(
                 children: [
                   _getSubtitleText('Reviews', context),
@@ -171,8 +160,7 @@ class PtDocDetTopContainer extends StatelessWidget {
                   const Text('★4.5 (20)'),
                 ],
               ),
-              const Divider(thickness: .5),
-              Container(height: 35, width: .6, color: const Color(0xFFD6D6D6)),
+              Container(height: 35, width: .6, color: Colors.grey),
               Column(
                 children: [
                   _getSubtitleText('Location', context),
@@ -182,7 +170,6 @@ class PtDocDetTopContainer extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
         ],
       ),
     );
@@ -473,12 +460,15 @@ class PtDocNavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text('Fee:  \$${2000}'),
+          const Text(
+            'Fee:  \$${2000}',
+            style: TextStyle(color: Colors.white),
+          ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 13),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.white54,
+              color: MyColor.skyPrimary,
             ),
             child: const Text(
               'Appointment',

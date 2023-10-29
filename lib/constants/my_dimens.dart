@@ -71,7 +71,7 @@ class MyDimens {
 
   Widget getDoctorCategory(String title) => Container(
         padding: const EdgeInsets.only(left: 7, top: 3, bottom: 3, right: 14),
-        //margin: const EdgeInsets.only(bottom: 5),
+        margin: const EdgeInsets.only(bottom: 5),
         decoration: const BoxDecoration(
           color: MyColor.blueSecondary,
           borderRadius: BorderRadius.horizontal(

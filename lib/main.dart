@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parctice2_app/blocs/task_cubit/task_cubit.dart';
 import 'package:parctice2_app/constants/routes.dart';
 import 'package:parctice2_app/screens/pt_doc_details_screen.dart';
-import 'package:parctice2_app/screens/test_screen.dart';
 
 void main() {
   runApp(const MyApp());
