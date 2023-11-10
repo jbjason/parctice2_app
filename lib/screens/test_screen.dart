@@ -16,14 +16,10 @@ class TestScreen extends StatelessWidget {
         child: DecoratedBox(
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/3.jpg'), fit: BoxFit.cover),
+                image: AssetImage('assets/back_5.jpg'), fit: BoxFit.cover),
           ),
           child: Column(children: [
-            const FrostedGlassBox(
-              width: double.infinity,
-              height: 100,
-              child: Center(child: Text('Hiii There!!')),
-            ),
+            const SizedBox(height: 80),
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(vertical: 10),
@@ -125,7 +121,9 @@ class ProductItem extends StatelessWidget {
                     child: const SizedBox(
                         width: double.infinity, height: 135, child: Text(" ")),
                   ),
-                  _getGlassEffect(
+                  FrostedGlassBox(
+                    width: double.infinity,
+                    height: 135,
                     child: Row(
                       children: [
                         const SizedBox(width: 130),
@@ -148,8 +146,6 @@ class ProductItem extends StatelessWidget {
                                       .copyWith(fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(height: 5),
-                                // speciality
-                                // speciality list starts from 0 but in server starts form 1, so we are decreasing
                                 MyDimens()
                                     .getDoctorCategory("General Physician"),
                                 const Divider(thickness: .5),
@@ -178,31 +174,28 @@ class ProductItem extends StatelessWidget {
     );
   }
 
-  Widget _getGlassEffect({required Widget child}) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            blurRadius: 30,
-            offset: const Offset(2, 2),
-          )
-        ],
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1.0),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.white.withOpacity(0.5),
-            Colors.white.withOpacity(0.1),
+  Widget _getGlassEffect({required Widget child}) => Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              blurRadius: 30,
+              offset: const Offset(2, 2),
+            )
           ],
-          stops: const [0.0, 1.0],
+          border: Border.all(color: Colors.white.withOpacity(0.2), width: 1.0),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.white.withOpacity(0.5),
+              Colors.white.withOpacity(0.1),
+            ],
+            stops: const [0.0, 1.0],
+          ),
         ),
-      ),
-      child: child,
-    );
-  }
-
+        child: child,
+      );
   Widget _getImage(int i) => Positioned(
         left: -10,
         top: -20,
@@ -270,31 +263,48 @@ class TestImgpainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final w = size.width, h = size.height;
     final center = Offset(w / 2, h / 2);
-    final paint = _getPaint(MyColor.bluePrimary, 6);
-    final path = Path();
     final rect = Rect.fromCenter(center: center, width: w, height: h);
-    path.addArc(rect, vector.radians(0), vector.radians(270));
+    const gradient1 = SweepGradient(
+      colors: [
+        Colors.white10,
+        Colors.white12,
+        Colors.white24,
+        MyColor.ashhLight,
+        MyColor.ashhLight,
+      ],
+    );
+    final paint = _getPaint(gradient1, rect, 6);
+    final path = Path();
+    path.addArc(rect, vector.radians(10), vector.radians(260));
     canvas.drawPath(path, paint);
 
     ///
     ///
-    final paint2 = _getPaint(MyColor.ashhLight, 1.5);
+    const gradient2 = SweepGradient(
+      colors: [
+        Colors.black26,
+        Colors.black38,
+        Colors.black26,
+        MyColor.bluePrimary,
+        MyColor.bluePrimary,
+      ],
+    );
+    final paint2 = _getPaint(gradient2, rect, 1.2);
     final path2 = Path();
-    final rect2 = Rect.fromCenter(center: center, width: w, height: h);
-    path2.addArc(rect2, vector.radians(0), vector.radians(270));
+    path2.addArc(rect, vector.radians(0), vector.radians(270));
     canvas.drawPath(path2, paint2);
 
     ///
     /// radian 270 to 360 is available for drawing stars
     /// will draw 3 stars, so adding 270+ (360 - 270.0)/ 3
     final paint3 = Paint()..color = MyColor.skyPrimary;
-    const star = (360 - 270.0) / 4;
+    const star = (370 - 270.0) / 4.5;
     final path3 = Path();
 
-    for (int i = 1; i <= 3; i++) {
-      final sideDiff = 6 + ((i - 1) * 2), closeDiff = i * 1;
-      final x3 = center.dx + w / 2 * math.cos(vector.radians(360 - (star * i)));
-      final y3 = center.dy + w / 2 * math.sin(vector.radians(360 - (star * i)));
+    for (int i = 1; i <= 4; i++) {
+      final sideDiff = 4 + ((i - 1) * 2), closeDiff = i * 1;
+      final x3 = center.dx + w / 2 * math.cos(vector.radians(380 - (star * i)));
+      final y3 = center.dy + w / 2 * math.sin(vector.radians(380 - (star * i)));
       path3.moveTo(x3 - sideDiff, y3);
       path3.lineTo(x3 - closeDiff, y3 - closeDiff);
       path3.lineTo(x3, y3 - sideDiff);
@@ -309,11 +319,14 @@ class TestImgpainter extends CustomPainter {
     }
   }
 
-  Paint _getPaint(Color color, double width) => Paint()
-    ..strokeWidth = width
-    ..color = color
-    ..strokeCap = StrokeCap.round
-    ..style = PaintingStyle.stroke;
+  Paint _getPaint(SweepGradient gradient, Rect rect, double width) {
+    return Paint()
+      ..strokeWidth = width
+      ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.stroke
+      ..shader = gradient.createShader(rect);
+  }
+
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
